@@ -1,0 +1,49 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WeatherForecast WSDL service -->
+
+  <service name="WeatherForecastSoap" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://www.webservicex.net"/>
+      <parameter name="wsdlServiceElement" value="WeatherForecast"/>
+      <parameter name="schemaQualified" value="http://www.webservicex.net"/>
+      <parameter name="wsdlServicePort" value="WeatherForecastSoap"/>
+      <parameter name="className" value="net.webservicex.www.WeatherForecastSoapSkeleton"/>
+      <parameter name="wsdlPortType" value="WeatherForecastSoap"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <arrayMapping
+        xmlns:ns="http://www.webservicex.net"
+        qname="ns:ArrayOfWeatherData"
+        type="java:net.webservicex.www.WeatherData[]"
+        innerType="cmp-ns:WeatherData" xmlns:cmp-ns="http://www.webservicex.net"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.webservicex.net"
+        qname="ns:WeatherData"
+        type="java:net.webservicex.www.WeatherData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.webservicex.net"
+        qname="ns:WeatherForecasts"
+        type="java:net.webservicex.www.WeatherForecasts"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
