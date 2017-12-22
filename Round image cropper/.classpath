@@ -11,7 +11,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/software/jar/commons-fileupload-1.2.2.jar/commons-fileupload-1.2.2.jar"/>
 	<classpathentry kind="lib" path="D:/software/jar/commons-io-2.3.jar/commons-io-2.3.jar"/>
